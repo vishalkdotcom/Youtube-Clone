@@ -3,4 +3,8 @@
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">commondatastorage.googleapis.com</domain>
     </domain-config>
+    <!-- TubeArchivist backend configuration -->
+    <domain-config cleartextTrafficPermitted="false">
+        <domain includeSubdomains="true">ta.vishalk.com</domain>
+    </domain-config>
 </network-security-config>

@@ -50,6 +50,8 @@ import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabNavigator
 import io.ktor.client.HttpClientConfig
 import org.company.app.di.appModule
+import org.company.app.di.getPlatformModules
+import org.company.app.di.tubeArchivistModule
 import org.company.app.presentation.ui.navigation.rails.items.NavigationItem
 import org.company.app.presentation.ui.navigation.rails.navbar.NavigationSideBar
 import org.company.app.presentation.ui.navigation.tabs.home.HomeTab
@@ -65,7 +67,7 @@ import org.koin.compose.KoinApplication
 internal fun App() = AppTheme {
     KoinApplication(
         application = {
-            modules(appModule)
+            modules(listOf(appModule, tubeArchivistModule) + getPlatformModules())
         }
     ) {
         AppContent()
