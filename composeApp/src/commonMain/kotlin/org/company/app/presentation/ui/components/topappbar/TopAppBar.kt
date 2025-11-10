@@ -90,6 +90,7 @@ import org.company.app.presentation.ui.components.channel.channel_item.SearchCha
 import org.company.app.presentation.ui.components.common.ErrorBox
 import org.company.app.presentation.ui.screens.account.AccountScreen
 import org.company.app.presentation.ui.screens.detail.DetailScreen
+import org.company.app.presentation.ui.screens.search.SearchScreen
 import org.company.app.presentation.viewmodel.MainViewModel
 import org.company.app.theme.LocalThemeIsDark
 import org.company.app.core.common.formatVideoDuration
@@ -151,8 +152,7 @@ fun TopBar(
                 }
                 IconButton(
                     onClick = {
-                        isSearchEnabled = !isSearchEnabled
-                        query = ""
+                        navigator?.push(SearchScreen())
                     },
                     modifier = Modifier.pointerHoverIcon(icon = PointerIcon.Hand)
                 ) {
