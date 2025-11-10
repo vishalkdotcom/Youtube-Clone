@@ -35,30 +35,6 @@ This fork is being adapted for **Android TV** with integration to a self-hosted 
 
 ---
 
-## 🤖 Claude AI Integration
-
-This repository is integrated with **Claude AI** via GitHub Actions! You can interact with Claude directly from issues and pull requests.
-
-### How to Use
-
-Simply mention `@claude` in any issue or PR comment to get assistance:
-
-- `@claude can you review this code?`
-- `@claude help implement this feature`
-- `@claude explain how this component works`
-- `@claude suggest improvements for this PR`
-
-### Setup
-
-To enable Claude integration for your fork:
-1. Get an API key from [Anthropic Console](https://console.anthropic.com)
-2. Add it as `ANTHROPIC_API_KEY` in **Settings → Secrets → Actions**
-3. See [Claude Setup Guide](.github/CLAUDE_SETUP.md) for detailed instructions
-
-Claude follows project-specific guidelines defined in [CLAUDE.md](CLAUDE.md).
-
----
-
 ## 🚀 Key Features
 - **Cross-Platform Compatibility (Android, iOS, Web & Desktop Applications)**
 - **Video Playback**
