@@ -3,7 +3,8 @@
 adaptive = "1.1.2"
 adaptiveLayout = "1.1.2"
 adaptiveNavigation = "1.1.2"
-androidxTv = "1.0.0-alpha10"
+androidxTvMaterial = "1.0.0"
+androidxTvFoundation = "1.0.0-alpha12"
 androidxDatastore = "1.1.1"
 androidxSecurityCrypto = "1.1.0-alpha06"
 core = "13.0.0"
@@ -45,8 +46,8 @@ gitlive = "2.1.0"
 adaptive-navigation = { module = "org.jetbrains.compose.material3.adaptive:adaptive-navigation", version.ref = "adaptiveNavigation" }
 adaptive-layout = { module = "org.jetbrains.compose.material3.adaptive:adaptive-layout", version.ref = "adaptiveLayout" }
 adaptive = { module = "org.jetbrains.compose.material3.adaptive:adaptive", version.ref = "adaptive" }
-androidx-tv-material = { module = "androidx.tv:tv-material", version.ref = "androidxTv" }
-androidx-tv-foundation = { module = "androidx.tv:tv-foundation", version.ref = "androidxTv" }
+androidx-tv-material = { module = "androidx.tv:tv-material", version.ref = "androidxTvMaterial" }
+androidx-tv-foundation = { module = "androidx.tv:tv-foundation", version.ref = "androidxTvFoundation" }
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "androidxDatastore" }
 androidx-datastore-core = { module = "androidx.datastore:datastore-core", version.ref = "androidxDatastore" }
 androidx-security-crypto = { module = "androidx.security:security-crypto", version.ref = "androidxSecurityCrypto" }
