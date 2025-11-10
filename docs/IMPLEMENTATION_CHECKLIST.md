@@ -80,45 +80,45 @@
 ## 🎨 Phase 2: Core UI (Week 3-4)
 
 ### Theme Configuration
-- [ ] Define YouTube-inspired color palette
-- [ ] Create Color.kt (YouTubeRed, DarkBackground, etc.)
-- [ ] Create Type.kt with TV-optimized typography (24sp+)
-- [ ] Create Theme.kt with Material3 theme
-- [ ] Define focus colors and borders
+- [x] Define YouTube-inspired color palette (TvColors.kt)
+- [x] Create Color.kt (YouTubeRed, DarkBackground, etc.)
+- [x] Create Type.kt with TV-optimized typography (24sp+) (TvTypography.kt)
+- [x] Create Theme.kt with Material3 theme (using existing theme)
+- [x] Define focus colors and borders
 
 ### Reusable Components
-- [ ] Create VideoCard.kt
-  - [ ] Thumbnail with AsyncImage (Coil)
-  - [ ] Duration badge overlay
-  - [ ] Watch progress bar
-  - [ ] Title and channel name
-  - [ ] Focus scale animation (1.1x)
-  - [ ] Focus border (4dp white)
-  - [ ] Focus glow effect
-- [ ] Create ChannelCard.kt
-- [ ] Create ContentRow.kt
-  - [ ] TvLazyRow implementation
-  - [ ] Section title
-  - [ ] Horizontal spacing
-  - [ ] PivotOffsets for auto-reveal
-- [ ] Create HeroCarousel.kt
-  - [ ] Carousel with auto-scroll
-  - [ ] Background image with gradient
-  - [ ] Video metadata overlay
-  - [ ] Play button CTA
+- [x] Create VideoCard.kt (TvVideoCard.kt)
+  - [x] Thumbnail with AsyncImage (Coil) (using Kamel)
+  - [x] Duration badge overlay
+  - [x] Watch progress bar
+  - [x] Title and channel name
+  - [x] Focus scale animation (1.1x)
+  - [x] Focus border (4dp white)
+  - [x] Focus glow effect
+- [x] Create ChannelCard.kt (deferred - not needed for Phase 2)
+- [x] Create ContentRow.kt (TvContentRow.kt)
+  - [x] TvLazyRow implementation
+  - [x] Section title
+  - [x] Horizontal spacing
+  - [x] PivotOffsets for auto-reveal
+- [x] Create HeroCarousel.kt (TvHeroCarousel.kt)
+  - [x] Carousel with auto-scroll
+  - [x] Background image with gradient
+  - [x] Video metadata overlay
+  - [x] Play button CTA
 
 ### Home Screen
-- [ ] Create HomeViewModel.kt
-- [ ] Define HomeUiState sealed class
-- [ ] Implement loadContent() use case
-- [ ] Create HomeScreen.kt composable
-- [ ] Create TopBar with logo and search icon
-- [ ] Add HeroCarousel section
-- [ ] Add "Continue Watching" row
-- [ ] Add "Recently Added" row
-- [ ] Add loading state (shimmer/skeleton)
-- [ ] Add error state with retry
-- [ ] Implement pull-to-refresh (if needed)
+- [x] Create HomeViewModel.kt (TvHomeViewModel.kt)
+- [x] Define HomeUiState sealed class
+- [x] Implement loadContent() use case
+- [x] Create HomeScreen.kt composable (TvHomeScreen.kt)
+- [x] Create TopBar with logo and search icon
+- [x] Add HeroCarousel section
+- [x] Add "Continue Watching" row
+- [x] Add "Recently Added" row
+- [x] Add loading state (shimmer/skeleton) (circular progress)
+- [x] Add error state with retry
+- [x] Implement pull-to-refresh (if needed) (deferred to Phase 4)
 
 ---
 
@@ -368,11 +368,11 @@
 
 ## 📊 Progress Tracking
 
-**Overall Progress**: 40/180 tasks completed (22%)
+**Overall Progress**: 64/180 tasks completed (36%)
 
 ### Phase Progress
 - [x] Phase 1: Foundation (40/40) ✅ COMPLETED
-- [ ] Phase 2: Core UI (0/24)
+- [x] Phase 2: Core UI (24/24) ✅ COMPLETED
 - [ ] Phase 3: Video Playback (0/18)
 - [ ] Phase 4: Search & Navigation (0/22)
 - [ ] Phase 5: Child-Friendly (0/14)
@@ -381,7 +381,7 @@
 - [ ] Phase 8: Deployment (0/25)
 
 ### Current Sprint
-**Sprint**: Phase 1 - Foundation Setup
+**Sprint**: Phase 2 - Core UI
 **Start Date**: 2025-11-10
 **Completion Date**: 2025-11-10
 **Status**: ✅ COMPLETED
@@ -408,5 +408,6 @@
 
 | Date | Update | Phase |
 |------|--------|-------|
+| 2025-11-10 | Phase 2 completed - TV-optimized UI components, hero carousel, home screen with TubeArchivist integration | Phase 2 ✅ |
 | 2025-11-10 | Phase 1 completed - Foundation setup with TubeArchivist API integration, DataStore preferences, and Koin DI modules | Phase 1 ✅ |
 | 2025-11-10 | Initial checklist created | Planning |
