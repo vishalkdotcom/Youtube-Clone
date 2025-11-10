@@ -53,6 +53,57 @@ jobs:
           path: ${{ steps.apk_info.outputs.apk_path }}
           retention-days: 30
 
+      - name: Prepare APK for Release
+        id: prepare_release
+        run: |
+          APK_PATH="${{ steps.apk_info.outputs.apk_path }}"
+          BRANCH_NAME="${{ steps.apk_info.outputs.branch_name }}"
+          COMMIT_SHORT="${{ steps.apk_info.outputs.commit_short }}"
+
+          # Create a clean branch name for the tag (replace / with -)
+          CLEAN_BRANCH=$(echo "$BRANCH_NAME" | sed 's/\//-/g')
+          TAG_NAME="${CLEAN_BRANCH}-latest"
+          RELEASE_NAME="[Dev] ${BRANCH_NAME} - Latest Build"
+
+          # Copy and rename APK for better identification
+          APK_NAME="youtube-clone-${CLEAN_BRANCH}-${COMMIT_SHORT}.apk"
+          cp "$APK_PATH" "$APK_NAME"
+
+          echo "tag_name=$TAG_NAME" >> $GITHUB_OUTPUT
+          echo "release_name=$RELEASE_NAME" >> $GITHUB_OUTPUT
+          echo "apk_name=$APK_NAME" >> $GITHUB_OUTPUT
+
+          # Create release notes
+          cat > release_notes.md << EOF
+          ## Development Build
+
+          **Branch:** \`${BRANCH_NAME}\`
+          **Commit:** \`${COMMIT_SHORT}\` (\`${{ github.sha }}\`)
+          **Build Date:** $(date -u +"%Y-%m-%d %H:%M:%S UTC")
+          **APK Size:** ${{ steps.apk_info.outputs.apk_size }}
+
+          ### 📥 Direct Download
+          This is a rolling release - it's automatically updated with each push to this branch.
+
+          Download the APK file below and install it on your Android device.
+
+          ### ⚠️ Note
+          This is a development build. It may contain bugs or incomplete features.
+          EOF
+
+      - name: Create or Update Rolling Pre-release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.prepare_release.outputs.tag_name }}
+          name: ${{ steps.prepare_release.outputs.release_name }}
+          body_path: release_notes.md
+          files: ${{ steps.prepare_release.outputs.apk_name }}
+          prerelease: true
+          draft: false
+          make_latest: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Comment on PR with download link
         if: github.event_name == 'pull_request'
         uses: actions/github-script@v7
@@ -62,6 +113,8 @@ jobs:
             const apkSize = '${{ steps.apk_info.outputs.apk_size }}';
             const runId = context.runId;
             const repo = context.repo;
+            const tagName = '${{ steps.prepare_release.outputs.tag_name }}';
+            const apkName = '${{ steps.prepare_release.outputs.apk_name }}';
 
             const comment = `## 📦 APK Build Complete!
 
@@ -70,12 +123,14 @@ jobs:
             - 🔨 Commit: \`${{ steps.apk_info.outputs.commit_short }}\`
             - 🌿 Branch: \`${{ steps.apk_info.outputs.branch_name }}\`
 
-            **Download:**
-            [📥 Download APK](https://github.com/${repo.owner}/${repo.repo}/actions/runs/${runId})
+            **Direct Download (Recommended):**
+            🚀 [Download APK directly](https://github.com/${repo.owner}/${repo.repo}/releases/download/${tagName}/${apkName})
 
-            > Click the link above, scroll to "Artifacts" section at the bottom of the page, and download: **${artifactName}**
+            **Alternative - GitHub Artifact:**
+            [📥 Download from Actions](https://github.com/${repo.owner}/${repo.repo}/actions/runs/${runId})
+            > Scroll to "Artifacts" section and download: **${artifactName}** (expires in 30 days)
 
-            The artifact will be available for 30 days.`;
+            The direct download link above provides instant access without GitHub login and never expires!`;
 
             github.rest.issues.createComment({
               issue_number: context.issue.number,
@@ -95,8 +150,14 @@ jobs:
           echo "| Branch | \`${{ steps.apk_info.outputs.branch_name }}\` |" >> $GITHUB_STEP_SUMMARY
           echo "| Commit | \`${{ steps.apk_info.outputs.commit_short }}\` |" >> $GITHUB_STEP_SUMMARY
           echo "| Artifact Name | ${{ steps.apk_info.outputs.artifact_name }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Release Tag | ${{ steps.prepare_release.outputs.tag_name }} |" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "### 📥 Download Instructions" >> $GITHUB_STEP_SUMMARY
+          echo "### 🚀 Direct Download (Recommended)" >> $GITHUB_STEP_SUMMARY
+          echo "[Download APK directly](https://github.com/${{ github.repository }}/releases/download/${{ steps.prepare_release.outputs.tag_name }}/${{ steps.prepare_release.outputs.apk_name }})" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "No GitHub login required! Link never expires!" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 📥 Alternative: Download from Artifacts" >> $GITHUB_STEP_SUMMARY
           echo "1. Go to the [Actions run](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})" >> $GITHUB_STEP_SUMMARY
           echo "2. Scroll to the **Artifacts** section" >> $GITHUB_STEP_SUMMARY
           echo "3. Download: **${{ steps.apk_info.outputs.artifact_name }}**" >> $GITHUB_STEP_SUMMARY
