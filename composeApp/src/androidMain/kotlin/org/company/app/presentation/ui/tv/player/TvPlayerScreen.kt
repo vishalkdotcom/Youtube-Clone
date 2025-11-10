@@ -334,14 +334,3 @@ private fun formatTime(millis: Long): String {
     val seconds = totalSeconds % 60
     return String.format("%02d:%02d", minutes, seconds)
 }
-
-/**
- * Platform-specific video player component
- */
-@Composable
-expect fun TvVideoPlayer(
-    video: TaVideo,
-    isPlaying: Boolean,
-    onPlaybackStateChanged: (Boolean) -> Unit,
-    modifier: Modifier = Modifier
-)
