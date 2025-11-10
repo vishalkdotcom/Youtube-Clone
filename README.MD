@@ -4,6 +4,37 @@
 ## Overview
 YouTube Clone KMP is a sophisticated project developed using Kotlin Multiplatform (KMP), enabling the creation of versatile applications across Android, iOS, Web, and Desktop platforms with shared code. This comprehensive YouTube clone mirrors the functionalities of the official YouTube app, offering a seamless user experience across various devices. A Better Version of Original App (A Big Bold Claim).
 
+## 📺 Android TV + TubeArchivist Integration (New!)
+
+This fork is being adapted for **Android TV** with integration to a self-hosted **TubeArchivist** backend, specifically designed for young children (ages 1-5).
+
+### Key Features
+- 🎯 **Kid-Friendly UI**: Extra-large touch targets, strong visual feedback, gold focus indicators
+- 🔒 **Invisible Parental Controls**: Hidden PIN-protected settings with screen time limits
+- 📱 **10-Foot UI**: Optimized for TV viewing distance with Compose for TV
+- 🎬 **TubeArchivist Backend**: Stream from your own archived YouTube content
+- 🎮 **D-Pad Navigation**: Full remote control support with focus management
+- ⏱️ **Screen Time Tracking**: Automatic daily limits with midnight reset
+- 🚫 **Accidental Exit Prevention**: 3-press back button requirement
+
+### Documentation
+- 📋 [Implementation Plan](docs/ANDROID_TV_IMPLEMENTATION_PLAN.md) - Complete architecture and development plan
+- ✅ [Implementation Checklist](docs/IMPLEMENTATION_CHECKLIST.md) - Detailed task tracking (180 tasks)
+- ⚙️ [Configuration Guide](docs/CONFIG.md) - API setup and security best practices
+
+### Tech Stack for Android TV
+- **UI**: Jetpack Compose for TV (androidx.tv:tv-material)
+- **Player**: Media3 ExoPlayer
+- **Networking**: Ktor Client 3.0
+- **DI**: Koin 3.6
+- **Database**: Room + DataStore
+- **Architecture**: Clean Architecture + MVVM
+
+### Development Status
+🚧 **In Progress** - See [Implementation Checklist](docs/IMPLEMENTATION_CHECKLIST.md) for current status
+
+---
+
 ## 🚀 Key Features
 - **Cross-Platform Compatibility (Android, iOS, Web & Desktop Applications)**
 - **Video Playback**
