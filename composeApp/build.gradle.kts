@@ -112,6 +112,14 @@ kotlin {
             implementation(libs.koin.androidx.compose)
             implementation(libs.androidx.glance.app.widget)
             implementation(libs.androidx.glance.material3)
+            // Android TV dependencies
+            implementation(libs.androidx.tv.material)
+            implementation(libs.androidx.tv.foundation)
+            // DataStore for preferences
+            implementation(libs.androidx.datastore.preferences)
+            implementation(libs.androidx.datastore.core)
+            // Security for encrypted preferences
+            implementation(libs.androidx.security.crypto)
             implementation(project.dependencies.platform(libs.android.firebase.bom))
         }
 
