@@ -33,6 +33,7 @@ import org.koin.compose.viewmodel.koinViewModel
 @Composable
 fun TvHomeScreen(
     modifier: Modifier = Modifier,
+    onVideoClick: (String) -> Unit = {},
     viewModel: TvHomeViewModel = koinViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -50,7 +51,7 @@ fun TvHomeScreen(
             is TvHomeUiState.Success -> {
                 SuccessState(
                     state = state,
-                    onVideoClick = viewModel::onVideoClick
+                    onVideoClick = { video -> onVideoClick(video.id) }
                 )
             }
 

@@ -14,7 +14,9 @@ import org.company.app.data.remote.tubearchivist.TubeArchivistApi
 import org.company.app.data.repository.TubeArchivistRepositoryImpl
 import org.company.app.domain.repository.TubeArchivistRepository
 import org.company.app.presentation.ui.tv.home.TvHomeViewModel
+import org.company.app.presentation.ui.tv.player.TvPlayerViewModel
 import org.koin.compose.viewmodel.dsl.viewModelOf
+import org.koin.core.module.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
@@ -72,4 +74,12 @@ val tubeArchivistModule = module {
 
     // TubeArchivist ViewModels
     viewModelOf(::TvHomeViewModel)
+
+    // TvPlayerViewModel with videoId parameter
+    viewModel { (videoId: String) ->
+        TvPlayerViewModel(
+            repository = get(),
+            videoId = videoId
+        )
+    }
 }

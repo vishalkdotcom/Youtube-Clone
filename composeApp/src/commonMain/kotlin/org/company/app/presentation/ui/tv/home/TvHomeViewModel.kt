@@ -86,12 +86,4 @@ class TvHomeViewModel(
     fun retry() {
         loadContent()
     }
-
-    /**
-     * Handle video click
-     */
-    fun onVideoClick(video: TaVideo) {
-        // TODO: Navigate to video player screen
-        // This will be implemented in Phase 3
-    }
 }
