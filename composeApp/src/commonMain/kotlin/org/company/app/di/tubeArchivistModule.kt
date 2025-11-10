@@ -13,6 +13,8 @@ import kotlinx.serialization.json.Json
 import org.company.app.data.remote.tubearchivist.TubeArchivistApi
 import org.company.app.data.repository.TubeArchivistRepositoryImpl
 import org.company.app.domain.repository.TubeArchivistRepository
+import org.company.app.presentation.ui.tv.home.TvHomeViewModel
+import org.koin.compose.viewmodel.dsl.viewModelOf
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
@@ -67,4 +69,7 @@ val tubeArchivistModule = module {
     single<TubeArchivistRepository> {
         TubeArchivistRepositoryImpl(api = get())
     }
+
+    // TubeArchivist ViewModels
+    viewModelOf(::TvHomeViewModel)
 }
