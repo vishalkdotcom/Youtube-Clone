@@ -3,7 +3,7 @@
 adaptive = "1.1.2"
 adaptiveLayout = "1.1.2"
 adaptiveNavigation = "1.1.2"
-androidxTv = "1.0.0"
+androidxTv = "1.0.0-rc01"
 androidxDatastore = "1.1.1"
 androidxSecurityCrypto = "1.1.0-alpha06"
 core = "13.0.0"
